@@ -8,7 +8,13 @@ import NewStudent from "./components/NewStudent";
 function App() {
 const [students, setStudents] = useState(studentsJSON)
 const [search, setSearch] = useState("");
+const [showForm, setShowForm] = useState(false);
 console.log(search);
+
+const handleShowForm = () => {
+  console.log("show Form")
+  setShowForm(!showForm)
+}
 
 const handleExpelled = (studentName) => {
 console.log("hello you are expelled", studentName)
@@ -43,8 +49,10 @@ const handleSort = () => {
     <div className="App">
       <h1>Hogwarts</h1>
       <button onClick={handleSort}>Sort</button>
+      <button onClick ={handleShowForm}>Show Form</button>
       <SearchStudent search={search} setSearch={setSearch} setStudents={setStudents} students={students}/>
-      <NewStudent allStudents={students} setStudents={setStudents}/>
+      {showForm ? (<NewStudent allStudents={students} setStudents={setStudents}/> ) : null}
+      
       <h2>Students:</h2>
       <AllStudents students={students} handleSetStudents ={setStudents} search={search} handleExpelled={handleExpelled}/>
     </div>
