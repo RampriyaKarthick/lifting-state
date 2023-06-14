@@ -12,6 +12,12 @@ console.log(search);
 
 const handleExpelled = (studentName) => {
 console.log("hello you are expelled", studentName)
+const filteredStudents = students.filter(student => {
+  if(student.name !== studentName){
+    return true;
+  }
+})
+setStudents(filteredStudents)
 };
 
 const handleSort = () => {
