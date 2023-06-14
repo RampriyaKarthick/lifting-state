@@ -3,6 +3,7 @@ import './App.css';
 import studentsJSON from './data.json'
 import AllStudents from "./components/AllStudents";
 import SearchStudent from "./components/SearchStudent";
+import NewStudent from "./components/NewStudent";
 
 function App() {
 const [students, setStudents] = useState(studentsJSON)
@@ -33,6 +34,8 @@ const handleSort = () => {
       <h1>Hogwarts</h1>
       <button onClick={handleSort}>Sort</button>
       <SearchStudent search={search} setSearch={setSearch} setStudents={setStudents} students={students}/>
+      <NewStudent allStudents={students} setStudents={setStudents}/>
+      <h2>Students:</h2>
       <AllStudents students={students} handleSetStudents ={setStudents} search={search}/>
     </div>
   );
