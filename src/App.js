@@ -10,6 +10,10 @@ const [students, setStudents] = useState(studentsJSON)
 const [search, setSearch] = useState("");
 console.log(search);
 
+const handleExpelled = (studentName) => {
+console.log("hello you are expelled", studentName)
+};
+
 const handleSort = () => {
   console.log("clicked")
   //deep copy, super deep 
@@ -36,7 +40,7 @@ const handleSort = () => {
       <SearchStudent search={search} setSearch={setSearch} setStudents={setStudents} students={students}/>
       <NewStudent allStudents={students} setStudents={setStudents}/>
       <h2>Students:</h2>
-      <AllStudents students={students} handleSetStudents ={setStudents} search={search}/>
+      <AllStudents students={students} handleSetStudents ={setStudents} search={search} handleExpelled={handleExpelled}/>
     </div>
   );
 }
