@@ -1,5 +1,6 @@
 
-function StudentCard({oneStudent, handleExpelled}) {
+
+function StudentCard({oneStudent, handleExpelled,showDetails, setShowDetails,studentDetail}) {
   return (
     <div className="student-card">
     <img src={oneStudent.image} alt={oneStudent.name} width={75} />
@@ -8,6 +9,10 @@ function StudentCard({oneStudent, handleExpelled}) {
     <h5>Half-blood:{oneStudent.muggle ? '✅' : '❌'}</h5>
     <h5>Actor:{oneStudent.actor}</h5>
     <button onClick={ () => {handleExpelled(oneStudent.name)} }>Expell</button>
+    <button onClick = {() =>{setShowDetails(studentDetail)
+    }}
+    >
+     Details </button>
     </div>
   );
 }

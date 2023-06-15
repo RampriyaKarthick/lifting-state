@@ -5,12 +5,17 @@ import axios from "axios";
 import AllStudents from "./components/AllStudents";
 import SearchStudent from "./components/SearchStudent";
 import NewStudent from "./components/NewStudent";
+import StudentDetail from "./components/StudentDetail";
+
 
 function App() {
 const [students, setStudents] = useState([])
 const [search, setSearch] = useState("");
 const [showForm, setShowForm] = useState(false);
+const [showDetails, setShowDetails] = useState(false);
+const [studentDetail, setStudentDetail]=useState(null)
 const[counter, setCounter]=useState(0);
+
 //console.log(search);
 
 //console.log("everytime!")
@@ -26,6 +31,10 @@ useEffect(() => {
 // }
 
 }, []);
+
+useEffect(() => {
+  console.log('Details Changed')
+}, [showDetails] )
 
 const fetchCharacters = async() => {
   //this is with fetch
@@ -78,6 +87,20 @@ const handleSort = () => {
   setStudents(sorted);
 };
 
+const studentDetailFunc = (studentId) => {
+let copyStudents = JSON.parse(JSON.stringify(students))
+const filteredChar = copyStudents.filter((oneChar) => {
+  if(oneChar.id === studentId){
+    return true
+  }
+})
+
+console.log("copyStudents", copyStudents);
+console.log("here is the detailed char", filteredChar)
+setStudentDetail(filteredChar[0])
+setShowDetails(true)
+}
+
   return (
     <div className="App">
       <h1>Hogwarts</h1>
@@ -87,9 +110,11 @@ const handleSort = () => {
       <button onClick ={handleShowForm}>Show Form</button>
       <SearchStudent search={search} setSearch={setSearch} setStudents={setStudents} students={students}/>
       {showForm ? (<NewStudent allStudents={students} setStudents={setStudents}/> ) : null}
-      
+      {showDetails ? <StudentDetail student={studentDetail} /> : null}
+
+      <StudentDetail studentDetail={studentDetail}/>
       <h2>Students:</h2>
-      <AllStudents students={students} handleSetStudents ={setStudents} search={search} handleExpelled={handleExpelled}/>
+      <AllStudents students={students} handleSetStudents ={setStudents} search={search} handleExpelled={handleExpelled} showDetails={showDetails}setShowDetails={setShowDetails} studentDetail={studentDetailFunc}/>
     </div>
   );
 }

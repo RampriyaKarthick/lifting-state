@@ -1,7 +1,7 @@
 import StudentCard from "./StudentCard";
 
 
-function AllStudents({students,handleSetStudents,search,handleExpelled}) {
+function AllStudents({students,handleSetStudents,search,handleExpelled, showDetails,setShowDetails,studentDetail}) {
     console.log("All students",students);
     const searchLowerCase = search.toLowerCase();
   return (
@@ -15,7 +15,7 @@ function AllStudents({students,handleSetStudents,search,handleExpelled}) {
         return false;
       })
       .map((student) => {
-        return <StudentCard key={student.id} oneStudent={student} handleExpelled={handleExpelled} />;
+        return <StudentCard key={student.id} oneStudent={student} handleExpelled={handleExpelled} showDetails={showDetails} setShowDetails={setShowDetails} studentDetail={studentDetail} />;
       })}
   </>
   )
