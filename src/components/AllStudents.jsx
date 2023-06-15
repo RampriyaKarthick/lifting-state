@@ -15,7 +15,7 @@ function AllStudents({students,handleSetStudents,search,handleExpelled}) {
         return false;
       })
       .map((student) => {
-        return <StudentCard key={student.name} oneStudent={student} handleExpelled={handleExpelled} />;
+        return <StudentCard key={student.id} oneStudent={student} handleExpelled={handleExpelled} />;
       })}
   </>
   )
